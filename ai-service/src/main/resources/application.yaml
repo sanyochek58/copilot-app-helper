@@ -1,0 +1,24 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: ai-service
+
+  ai:
+    openai:
+      baseUrl: https://api.groq.com/openai/v1
+      apiKey: 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
+      chat:
+        options:
+          model: llama-3.3-70b-versatile
+          temperature: 0.2
+
+app:
+  jwt:
+    secret: 473f314815a9826fc0e1499530433bf6cacf87d972e0cc7b4c6351a7980e2f6d
+
+logging:
+  level:
+    org.springframework.security: INFO
+    org.springframework.ai: INFO

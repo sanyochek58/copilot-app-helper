@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: copilot_auth_postgres
+    environment:
+      POSTGRES_DB: copilot_auth
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - copilot_auth_data:/var/lib/postgresql/data
+    networks:
+      - copilot-net
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/copilot_auth
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+
+      APP_JWT_SECRET:
+      APP_JWT_EXPIRATION-SECOND: 3600
+    ports:
+      - "8081:8081"
+    networks:
+      - copilot-net
+
+  ai-service:
+    build: ./ai-service
+    container_name: ai-service
+    depends_on:
+      - auth-service
+    environment:
+      APP_JWT_SECRET:
+      OPENAI_API_KEY:
+    ports:
+      - "8082:8082"
+    networks:
+      - copilot-net
+
+networks:
+  copilot-net:
+
+volumes:
+  copilot_auth_data:
