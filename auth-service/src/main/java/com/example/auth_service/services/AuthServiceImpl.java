@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -96,6 +97,28 @@ public class AuthServiceImpl implements AuthService {
         logger.info("Token generated");
 
         return new Response_LoginDTO(token);
+    }
+
+    @Override
+    public Response_BusinessContextDTO businessInfo(UUID businessId) throws BusinessNotFound {
+        Business business = businessRepository.findById(businessId).orElseThrow(() -> new BusinessNotFound("Business for user not found !"));
+
+        List<Employee> employees = employeeRepository.findByBusiness(business);
+
+        return new Response_BusinessContextDTO(
+                business.getUuid().toString(),
+                business.getName(),
+                business.getArea(),
+                business.getOwner().getName(),
+                String.valueOf(business.getProfit()),
+                employees.stream().map(
+                        e -> new EmployeeDTO(
+                                e.getName(),
+                                e.getEmail(),
+                                e.getPosition()
+                        )
+                ).toList()
+        );
     }
 
 

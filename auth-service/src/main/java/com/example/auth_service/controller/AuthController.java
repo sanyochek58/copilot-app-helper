@@ -9,10 +9,7 @@ import com.example.auth_service.services.AuthServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -32,4 +29,5 @@ public class AuthController {
         Response_LoginDTO response = authService.loginUser(request);
         return ResponseEntity.ok(response);
     }
+
 }

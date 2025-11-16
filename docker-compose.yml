@@ -25,7 +25,7 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
 
-      APP_JWT_SECRET:
+      APP_JWT_SECRET: 473f314815a9826fc0e1499530433bf6cacf87d972e0cc7b4c6351a7980e2f6d
       APP_JWT_EXPIRATION-SECOND: 3600
     ports:
       - "8081:8081"
@@ -38,8 +38,8 @@ services:
     depends_on:
       - auth-service
     environment:
-      APP_JWT_SECRET:
-      OPENAI_API_KEY:
+      APP_JWT_SECRET: 473f314815a9826fc0e1499530433bf6cacf87d972e0cc7b4c6351a7980e2f6d
+      OPENAI_API_KEY: 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
     ports:
       - "8082:8082"
     networks:
