@@ -12,7 +12,22 @@ spring:
       chat:
         options:
           model: llama-3.3-70b-versatile
-          temperature: 0.2
+          temperature: 0.7
+
+
+  mail:
+    host: smtp.mail.ru
+    port: 465
+    username: copilot-assissant@mail.ru
+    password: H1tJIESSXQ9wSjpcCKc3
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+    default-encoding: UTF-8
+    test-connection: false
 
 app:
   jwt:

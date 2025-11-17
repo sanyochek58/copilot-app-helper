@@ -14,7 +14,7 @@ public class OpenAiClientConfig {
     @Value("${spring.ai.openai.apiKey}")
     private String apiKey;
 
-    @Bean
+    @Bean(name = "openAiWebClient")
     public WebClient openAiWebClient() {
         return WebClient.builder()
                 .baseUrl(baseUrl)

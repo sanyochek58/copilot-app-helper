@@ -7,7 +7,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class AuthClientConfig {
 
-    @Bean
+    @Bean(name = "authWebClient")
     public WebClient authWebClient() {
         return WebClient.builder()
                 .baseUrl("http://auth-service:8081")

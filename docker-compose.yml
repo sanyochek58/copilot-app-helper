@@ -38,12 +38,42 @@ services:
     depends_on:
       - auth-service
     environment:
-      APP_JWT_SECRET:
-      OPENAI_API_KEY:
+      APP_JWT_SECRET: 473f314815a9826fc0e1499530433bf6cacf87d972e0cc7b4c6351a7980e2f6d
+      OPENAI_API_KEY: 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
     ports:
       - "8082:8082"
     networks:
       - copilot-net
+
+  frontend:
+    build: ./CHAT-WEBAPP
+    container_name: copilot-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_AUTH_SERVICE_URL: /api
+      VITE_AI_SERVICE_URL: /api
+    depends_on:
+      - auth-service
+      - ai-service
+    networks:
+      - copilot-net
+
+  nginx:
+    image: nginx:latest
+    container_name: copilot-nginx
+    depends_on:
+      - frontend
+      - auth-service
+      - ai-service
+    ports:
+      - "4000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - copilot-net
+
+
 
 networks:
   copilot-net:
