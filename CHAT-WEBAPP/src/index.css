@@ -1,0 +1,1254 @@
+/* ===========================
+   БАЗА / RESET
+   =========================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #050509;
+  color: #f5f5f7;
+}
+
+/* Ссылки по умолчанию */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===========================
+   КОРНЕВОЙ LAYOUT
+   =========================== */
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #050509;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 12px 12px 16px;
+}
+
+/* Центровка всех основных страниц */
+.page-container,
+.chat-page,
+.profile-page,
+.companies-page,
+.calendar-page,
+.favorites-page {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   ШАПКА
+   =========================== */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #050509;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.burger-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+  /* новый цвет */
+  background-color: #2563eb;  /* синий как primary-кнопка */
+  color: #ffffff;
+
+  font-size: 20px;
+  line-height: 1;
+  padding: 0;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.burger-button:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.burger-button:active {
+  transform: translateY(0);
+  background-color: #1e40af;
+}
+
+.app-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ===========================
+   КАРТОЧКИ / ФОРМЫ / КНОПКИ
+   =========================== */
+
+.card,
+.company-detail,
+.profile-card {
+  background: #0d0d13;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Заголовки карточек */
+.card-header {
+  margin-bottom: 12px;
+}
+.card-header h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.card-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(245, 245, 247, 0.7);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-footer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Формы */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-size: 13px;
+  color: rgba(245, 245, 247, 0.8);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #050509;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: #f5f5f7;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(245, 245, 247, 0.45);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.4);
+}
+
+/* Кнопки */
+
+.primary-button {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  background: #3b82f6;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.secondary-button {
+  border-radius: 999px;
+  padding: 9px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: transparent;
+  color: #f5f5f7;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.danger-button,
+.modal__delete-button,
+.company-delete-button {
+  border-radius: 999px;
+  padding: 9px 16px;
+  border: 1px solid rgba(248, 113, 113, 0.6);
+  background: rgba(248, 113, 113, 0.1);
+  color: #fecaca;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.primary-button:disabled,
+.secondary-button:disabled,
+.danger-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Иконки-кнопки */
+
+.icon-button {
+  border: none;
+  background: transparent;
+  padding: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-button--danger {
+  color: #fca5a5;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+/* ===========================
+   AUTH (вход / регистрация)
+   =========================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: #050509;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 520px;
+  background: #0d0d13;
+  border-radius: 18px;
+  padding: 20px 20px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+}
+
+.auth-title {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.auth-subtitle {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: rgba(245, 245, 247, 0.7);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-submit {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.auth-switch {
+  width: 100%;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+/* Ошибка авторизации */
+
+.auth-error {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #fecaca;
+  font-size: 13px;
+}
+
+/* Сотрудники в регистрации */
+
+.auth-employees-section {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.auth-employees-title {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.auth-employees-subtitle {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: rgba(245, 245, 247, 0.7);
+}
+
+.auth-employees-section {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.auth-employees-title {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.auth-employees-subtitle {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: rgba(245, 245, 247, 0.7);
+}
+
+/* Ряд сотрудника — адаптивный flex */
+
+.auth-employee-row {
+  display: flex;
+  flex-wrap: wrap;          /* на узких карточках переносим на 2 строки */
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.auth-employee-row input {
+  flex: 1 1 calc(50% - 6px); /* два поля в строку */
+  min-width: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #050509;
+  padding: 6px 8px;
+  font-size: 13px;
+  color: #f5f5f7;
+}
+
+.auth-employee-row input::placeholder {
+  color: rgba(245, 245, 247, 0.45);
+}
+
+.auth-employee-row .icon-button {
+  flex: 0 0 auto;
+  align-self: center;
+}
+
+/* На широких экранах можно выстроить всё в одну строку */
+
+@media (min-width: 720px) {
+  .auth-employee-row {
+    flex-wrap: nowrap;
+  }
+
+  .auth-employee-row input {
+    flex: 1 1 0;
+  }
+}
+
+
+.auth-employee-row input::placeholder {
+  color: rgba(245, 245, 247, 0.45);
+}
+
+/* ===========================
+   BURGER-МЕНЮ
+   =========================== */
+
+.burger-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.burger-menu.open {
+  pointer-events: auto;
+  opacity: 1;
+  background: rgba(5, 5, 9, 0.55);
+}
+
+/* Левая панель */
+
+.burger-menu__panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  width: 260px;
+  padding: 16px 16px 20px;
+
+  background: #0d0d13;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 10px 0 35px rgba(0, 0, 0, 0.7);
+
+  transform: translateX(-100%);
+  transition: transform 0.2s ease;
+}
+
+.burger-menu.open .burger-menu__panel {
+  transform: translateX(0);
+}
+
+.burger-nav {
+  margin-top: 8px;
+}
+
+.burger-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.burger-nav__list li + li {
+  margin-top: 6px;
+}
+
+.burger-nav__list a {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  color: #f5f5f7;
+  background: transparent;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.burger-nav__list a:hover {
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.burger-new-chat {
+  margin-top: 16px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ===========================
+   МОДАЛКИ
+   =========================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 9, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal {
+  background: #0d0d13;
+  border-radius: 18px;
+  padding: 16px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+}
+
+.modal h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* ===========================
+   ЧАТ
+   =========================== */
+
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-messages {
+  flex: 1;
+  min-height: 300px;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  padding: 12px;
+  background: #0d0d13;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Сообщения */
+
+.chat-message {
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.chat-message--user {
+  justify-content: flex-end;
+}
+
+.chat-message--assistant {
+  justify-content: flex-start;
+}
+
+.chat-message__bubble {
+  max-width: 78%;
+  padding: 8px 10px;
+  border-radius: 14px;
+  position: relative;
+}
+
+.chat-message--user .chat-message__bubble {
+  background: #3b82f6;
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-message--assistant .chat-message__bubble {
+  background: #111827;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-message__content {
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.chat-message__actions {
+  margin-top: 4px;
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+/* Панель ввода */
+
+.chat-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.chat-input {
+  flex: 1;
+  min-height: 42px;
+  max-height: 120px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0d0d13;
+  color: #f5f5f7;
+  resize: none;
+}
+
+.chat-input--listening {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(59, 130, 246, 0.6);
+  background: #0b1120;
+}
+
+/* Микрофон */
+
+.mic-button {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.mic-button--active {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.12);
+}
+
+/* Кнопка отправки */
+
+.send-button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Состояние "слушаю" */
+
+.listening-text {
+  font-size: 14px;
+}
+
+.listening-dots {
+  display: flex;
+  gap: 3px;
+}
+
+.listening-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #3b82f6;
+  animation: listening-dot 0.9s infinite alternate;
+}
+
+.listening-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.listening-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes listening-dot {
+  from {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+
+/* Toast */
+
+.toast {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.95);
+  color: #f9fafb;
+  font-size: 13px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  z-index: 60;
+}
+
+/* ===========================
+   КОМПАНИИ
+   =========================== */
+
+.companies-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.companies-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.companies-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.companies-add-button .icon {
+  margin-right: 4px;
+}
+
+.companies-empty {
+  font-size: 14px;
+  color: rgba(245, 245, 247, 0.75);
+}
+
+.companies-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #0d0d13;
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.company-card {
+  background-color: #111827; /* тёмный фон */
+  border-radius: 10px;
+  padding: 12px 16px;
+  text-align: left;
+  border: 1px solid #1f2937;
+}
+
+/* НАЗВАНИЕ компании — делаем ярким */
+.company-card__title {
+  color: #f9fafb;        /* почти белый */
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+/* Подзаголовок/сфера — чуть приглушённый */
+.company-card__subtitle {
+  color: #9ca3af;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+/* Метаданные (ИНН, количество сотрудников) */
+.company-card__meta {
+  color: #6b7280;
+  font-size: 12px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ===========================
+   COMPANY DETAIL / TABLES
+   =========================== */
+
+.company-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.company-detail__title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.company-section {
+  margin-top: 8px;
+}
+
+.company-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.company-section__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.company-section__optional {
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.company-section__buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #050509;
+}
+
+.employees-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.employees-table thead {
+  background: #0b1120;
+}
+
+.employees-table th,
+.employees-table td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.7);
+}
+
+.employees-table th {
+  font-weight: 500;
+  color: rgba(249, 250, 251, 0.85);
+}
+
+.table-placeholder-row td {
+  padding: 10px;
+  font-style: italic;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.csv-hint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.csv-hint code {
+  background: rgba(15, 23, 42, 0.9);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+/* Footer company detail */
+
+.company-detail__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.company-detail__footer-right {
+  display: flex;
+  gap: 8px;
+}
+
+/* ===========================
+   КАЛЕНДАРЬ
+   =========================== */
+
+.calendar-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calendar-header__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calendar-header__right {
+  display: flex;
+  gap: 8px;
+}
+
+.calendar-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.calendar-nav-button {
+  padding-inline: 10px;
+}
+
+/* Месяц */
+
+.calendar-month {
+  background: #0d0d13;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 12px;
+}
+
+.calendar-month__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.calendar-month__weekday {
+  text-align: center;
+}
+
+.calendar-month__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-month__cell {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  background: transparent;
+  color: #f9fafb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.calendar-month__cell.empty {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.calendar-month__cell.day:hover {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.calendar-month__cell.day.selected {
+  background: #1f2937;
+  border-color: #3b82f6;
+}
+
+.calendar-month__day-number {
+  font-size: 13px;
+}
+
+.calendar-month__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #22c55e;
+  margin-top: 2px;
+}
+
+/* Неделя */
+
+.calendar-week {
+  background: #0d0d13;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px 8px 12px;
+}
+
+.calendar-week__header {
+  display: grid;
+  grid-template-columns: auto repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.calendar-week__time-spacer {
+  width: 40px;
+}
+
+.calendar-week__day-header {
+  text-align: center;
+  font-size: 12px;
+}
+
+.calendar-week__day-name {
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.calendar-week__day-date {
+  font-weight: 500;
+}
+
+.calendar-week__grid {
+  display: grid;
+  grid-template-columns: auto repeat(7, 1fr);
+  gap: 4px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.calendar-week__time-column {
+  font-size: 11px;
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.calendar-week__time-cell {
+  height: 24px;
+}
+
+.calendar-week__day-column {
+  position: relative;
+}
+
+.calendar-week__slot-cell {
+  height: 24px;
+  border-top: 1px solid rgba(31, 41, 55, 0.8);
+}
+
+/* Блоки событий */
+
+.calendar-event-block {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  border-radius: 8px;
+  padding: 3px 5px;
+  font-size: 11px;
+  background: rgba(59, 130, 246, 0.85);
+  color: #f9fafb;
+  overflow: hidden;
+}
+
+.calendar-event-block--vacation {
+  background: rgba(34, 197, 94, 0.85);
+}
+
+.calendar-event-title {
+  font-weight: 500;
+  margin-bottom: 1px;
+}
+
+.calendar-event-time {
+  font-size: 10px;
+  opacity: 0.9;
+}
+
+/* Модалка события */
+
+.calendar-event-modal-time {
+  font-size: 13px;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.calendar-event-modal-description {
+  font-size: 13px;
+  white-space: pre-wrap;
+  margin-top: 4px;
+}
+
+.calendar-event-modal-description.empty {
+  font-style: italic;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.calendar-event-modal-description.vacation-big {
+  font-size: 13px;
+}
+
+.calendar-event-modal-note {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+/* ===========================
+   FAVORITES
+   =========================== */
+
+.favorites-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.favorites-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.favorites-empty {
+  padding: 16px;
+  border-radius: 16px;
+  background: #0d0d13;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.favorites-list {
+  background: #0d0d13;
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.favorite-item {
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #050509;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.favorite-item__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.favorite-chat-link {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  padding: 0;
+  background: none;
+  border: none;
+  color: #bfdbfe;
+  cursor: pointer;
+}
+
+.favorite-date {
+  font-size: 11px;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+.favorite-content {
+  font-size: 13px;
+  margin-bottom: 6px;
+  white-space: pre-wrap;
+}
+
+.favorite-actions {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+/* ===========================
+   PROFILE
+   =========================== */
+
+.profile-page {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 480px;
+}
+
+.profile-readonly {
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  padding: 8px 10px;
+  background: #050509;
+}
+
+.profile-readonly-value {
+  font-size: 14px;
+  color: rgba(249, 250, 251, 0.92);
+}
+
+.profile-hint {
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.95);
+  margin-top: 6px;
+}
+
+.profile-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.profile-reset-button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* ===========================
+   ONBOARDING
+   =========================== */
+
+.tabs {
+  display: inline-flex;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  padding: 3px;
+  margin-bottom: 8px;
+}
+
+.tab-button {
+  border-radius: 999px;
+  border: none;
+  padding: 5px 10px;
+  font-size: 13px;
+  background: transparent;
+  color: rgba(148, 163, 184, 0.95);
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background: #1f2937;
+  color: #f9fafb;
+}
+
+.hint {
+  font-size: 12px;
+  color: rgba(148, 163, 184, 0.95);
+}
+
+/* ===========================
+   ПРОЧЕЕ
+   =========================== */
+
+.field-error {
+  font-size: 11px;
+  color: #fecaca;
+}
