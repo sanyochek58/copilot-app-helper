@@ -194,6 +194,3 @@ docker compose down -v
 - **Петраков Артём** - Backend Developer
 - **Максим Плотников** - UX/UI
 - **Базылева Анастасия** - Frontend Developer & Project Manager(leader)
-
-
-live
