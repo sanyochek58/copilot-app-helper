@@ -1,4 +1,4 @@
-# Copilot App Helper(https://waterlike-hiroko-unsaturable.ngrok-free.dev/)
+# Copilot App Helper(https://alfabank-ai.projects.icloud-dev.ru/)
 
 Фуллстек-приложение, которое даёт владельцу микробизнеса своего **ИИ-копилота**:  
 помогает быстро отвечать клиентам, писать письма сотрудникам, придумывать идеи и формулировать любые тексты.
